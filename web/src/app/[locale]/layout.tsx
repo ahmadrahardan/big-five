@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import { fontSans } from '@/config/fonts';
+import { Suspense } from 'react';
 import { Providers } from '../providers';
 import { Navbar } from '@/components/navbar';
 import clsx from 'clsx';
@@ -108,7 +109,9 @@ export default async function RootLayout({
           }
         >
           <div className='relative flex flex-col h-screen'>
-            <Navbar navItems={navItems} navMenuItems={navMenuItems} />
+            <Suspense fallback={null}>
+              <Navbar navItems={navItems} navMenuItems={navMenuItems} />
+            </Suspense>
             <main className='w-full flex-grow'>
               {children}
               <CookieBanner />

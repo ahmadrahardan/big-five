@@ -6,7 +6,6 @@ import { User } from '@nextui-org/user';
 import { Link } from '@nextui-org/react';
 import { Image } from '@nextui-org/image';
 import { calculateReadingTime } from '@/lib/helpers';
-import { ViewCounter } from '@/components/view-counter';
 import { Suspense } from 'react';
 
 export const generateStaticParams = async () =>
@@ -75,7 +74,6 @@ const PostLayout = async ({ params }: { params: { slug: string } }) => {
         <div className='flex justify-between text-small mb-2 text-default-500 w-full'>
           <p>{calculateReadingTime(post.body.raw)} min read</p>
           <Suspense>
-            <ViewCounter postId={post._id} />
           </Suspense>
           <time dateTime={post.date}>
             {format(parseISO(post.date), 'LLLL d, yyyy')}
