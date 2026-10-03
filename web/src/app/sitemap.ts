@@ -1,19 +1,6 @@
 import { MetadataRoute } from 'next';
 import { basePath, locales } from '@/config/site';
 
-const articles = [
-  'agreeableness',
-  'conscientiousness',
-  'extraversion',
-  'neuroticism',
-  'openness',
-  'conscientiousness_longevity',
-  'bigfive_relationships',
-  'personality_diseases',
-  'the_dark_of_personality',
-  'link_between_personality_trais_psychological_needs'
-];
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const alternatesPageLang = (path: string = '') =>
     locales.reduce(
@@ -59,20 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: alternatesPageLang('/privacy')
       }
-    },
-    {
-      url: `${basePath}/articles`,
-      lastModified: new Date(),
-      alternates: {
-        languages: alternatesPageLang('/articles')
-      }
-    },
-    ...articles.map((article) => ({
-      url: `${basePath}/articles/${article}`,
-      lastModified: new Date(),
-      alternates: {
-        languages: alternatesPageLang(`/articles/${article}`)
-      }
-    }))
+    }
   ];
 }

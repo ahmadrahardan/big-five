@@ -13,7 +13,6 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
 import useTextDirection from '@/hooks/use-text-direction';
-import Script from 'next/script';
 import CookieBanner from '@/components/cookie-consent';
 
 export function generateStaticParams() {
@@ -35,13 +34,12 @@ export async function generateMetadata({
     },
     description: t('seo.description'),
     keywords: s('keywords'),
-    authors: [{ name: 'Jonas Enge', url: 'https://bigfive-test.com' }],
     icons: {
       icon: '/favicon-16x16.png',
       shortcut: '/favicon-16x16.png',
       apple: '/apple-touch-icon.png'
     },
-    metadataBase: new URL('https://bigfive-test.com'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
     // alternates: {
     //   canonical: '/',
     //   languages: alternatesLang
@@ -61,7 +59,6 @@ export async function generateMetadata({
       card: 'summary_large_image',
       description: t('seo.description'),
       site: basePath,
-      creator: siteConfig.creator,
       images: {
         url: `${basePath}/og-image.png`,
         alt: 'People comparing personality tests'
@@ -119,10 +116,6 @@ export default async function RootLayout({
             <Footer footerLinks={footerLinks} />
           </div>
         </Providers>
-        <Script
-          src='https://bigfive-test.com/sw.js'
-          strategy='beforeInteractive'
-        />
         <Analytics />
       </body>
       <GoogleAnalytics gaId={gaId} />

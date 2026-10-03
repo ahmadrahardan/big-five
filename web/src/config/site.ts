@@ -2,7 +2,8 @@ import { getTranslations } from 'next-intl/server';
 
 export type SiteConfig = typeof siteConfig;
 
-export const basePath = 'https://bigfive-test.com';
+
+export const basePath = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export const supportEmail = 'bigfive-test@rubynor.com';
 
@@ -22,7 +23,6 @@ export const locales = languages.map((lang) => lang.code) as string[];
 
 export const siteConfig = {
   name: 'Big Five Personality Test',
-  creator: '@maccyber',
   description:
     'Learn to know yourself better with a free, open-source personality test.',
   navItems: [
@@ -37,10 +37,6 @@ export const siteConfig = {
     // {
     //   label: 'compare',
     //   href: '/compare'
-    // },
-    // {
-    //   label: 'articles',
-    //   href: '/articles'
     // },
     // {
     //   label: 'about',
@@ -61,10 +57,6 @@ export const siteConfig = {
     //   href: '/compare'
     // },
     // {
-    //   label: 'articles',
-    //   href: '/articles'
-    // },
-    // {
     //   label: 'privacy',
     //   href: '/privacy'
     // },
@@ -81,10 +73,6 @@ export const siteConfig = {
     // {
     //   label: 'home',
     //   href: '/'
-    // },
-    // {
-    //   label: 'articles',
-    //   href: '/articles'
     // },
     // {
     //   label: 'privacy',
